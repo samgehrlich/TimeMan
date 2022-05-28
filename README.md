@@ -16,9 +16,9 @@ Use your Android device to create your own calnder and plans. Create a personali
 
 ## Storyboard
 
-[TimeMan Storyboard](https://projects.invisionapp.com/prototype/Plant-Diary-ck0bict0n005bqh01aaeu8tuu/play/c6560121)
 
-![TimeManFirstScreen](https://user-images.githubusercontent.com/2224876/82161817-15ee8880-986e-11ea-8cda-f04ad1412893.png)
+![TimeManFirstScreen](https://user-images.githubusercontent.com/57459468/170843101-61091905-6c12-456b-8b03-c36e76bf0b71.png)
+
 
 ## Functional Requirements
 
