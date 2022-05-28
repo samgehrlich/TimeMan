@@ -33,7 +33,7 @@ Task search data are available and accessible.
 
 #### Assumptions
 
------ 
+A list can be created and categorized based on age and occupation
 
 -----
 
@@ -42,33 +42,30 @@ Task search data are available and accessible.
 
 **Given** a database of tasks is available 
 
-**When**  I search for “Student”  
+**When**  my profile is set to “Student”  
 
 **Then** I should be able to see tasks such as "Study Time" or "Meeting" as options while creating task on my calender 
 
 
 1.2  
-**Given** a feed of plant data is available  
+**Given** app implements data from 3rd party apps  
 
-**When** I search for “Quercus”  
+**When** I open my calender   
 
-**Then** I should receive at least one result with these attributes:   
+**Then** I should be able to click on my calender and see tasks from my work or school 
 
-Genus: Quercus  
-Species: robur  
-Common: English Oak  
-And I should receive at least one result with these attributes:  
-Genus: Quercus  
-Species: alba  
-Common: White Oak  
+Source: Canvas/Outlook
+task: Meeting with xyzh
+Location: asndaosind
 
 1.3  
-**Given** a feed of plant data is available  
-**When** I search for “sklujapouetllkjsda;u”  
-**Then** I should receive zero results (an empty list)  
+
+**Given** Profile options are available  
+**When** I search for “Par”  
+**Then** I should be able to see "Parent" option.
 
 
-### Requirement 101: Save Specimen
+### Requirement 101: Save Taks in calender
 
 #### Scenario
 
