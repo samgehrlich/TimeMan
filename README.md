@@ -12,7 +12,7 @@ Do you want an app to help you plan your time? TimeMan can help you with it's va
 -	User can add thier own tasks and todo lists that can be saved and repeated as seprate elements to save time.
 -	Seamless implementation with other softwares such as Canvas/Email and other tools.  
 
-Use your Android device to create your own calnder and plans. Create a personalized profile that caters to your time needs. Create reminders and tasks based on what you did in past saving you time. Receive alerts about upcoming tasks and plans. 
+Use your Android device to create your own calendar and plans. Create a personalized profile that caters to your time needs. Create reminders and tasks based on what you did in past saving you time. Receive alerts about upcoming tasks and plans. 
 
 ## Storyboard
 
