@@ -119,6 +119,7 @@ _______
 - DevOps/Product Owner/Scrum Master: Rishabh Sharma 
 - Frontend Developer: Felix Odogwu  
 - Integration Developer: Dhruman Patel  
+- Developer:Robert Champion
 
 ## Weekly Meeting
 
