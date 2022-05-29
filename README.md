@@ -65,7 +65,7 @@ Location: asndaosind
 **Then** I should be able to see "Parent" option.
 
 
-### Requirement 101: Save Taks in calender
+### Requirement 101: Save Taks in calendar
 
 #### Scenario
 
@@ -73,7 +73,7 @@ As a user who wants to plan out his day, I want to quickly open up this app and 
 
 #### Dependencies
 Task data is available to the user.  
-The devidce has a in-built calender app.  
+The devidce has a in-built calendar app.  
 
 
 #### Assumptions  
@@ -82,12 +82,12 @@ _______
 #### Examples  
 
 1.1  
-**Given** user's calender data is available  
+**Given** user's calendar data is available  
 **When** User opens timeman calender page
 **Then** user can see all his tasks for the day
 
 2.1  
-**Given** user's calender data is available  
+**Given** user's calendar data is available  
 **When**  user opens the calender page of the app 
 
 -	Selects create task  
