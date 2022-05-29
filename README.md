@@ -44,13 +44,13 @@ A list can be created and categorized based on age and occupation
 
 **When**  my profile is set to “Student”  
 
-**Then** I should be able to see tasks such as "Study Time" or "Meeting" as options while creating task on my calender 
+**Then** I should be able to see tasks such as "Study Time" or "Meeting" as options while creating task on my calendar 
 
 
 1.2  
 **Given** app implements data from 3rd party apps  
 
-**When** I open my calender   
+**When** I open my calendar   
 
 **Then** I should be able to click on my calender and see tasks from my work or school 
 
