@@ -77,7 +77,7 @@ The devidce has a in-built calendar app.
 
 
 #### Assumptions  
-_______ 
+The timezone is accurate
 
 #### Examples  
 
