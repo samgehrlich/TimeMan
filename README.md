@@ -122,12 +122,12 @@ _______
 
 ## Weekly Meeting
 
-Sunday at 7 PM.  Use this WebEx:
+Saturday 4 PM.  Use this WebEx:
 
 Meeting Information
-[Office Hours WebEx](https://ucincinnati.webex.com/ucincinnati/j.php?MTID=m4eae59003bb943cc093fcd3f287864db)
+[Weekly meeting](https://ucincinnati.webex.com/ucincinnati/j.php?MTID=m4eae59003bb943cc093fcd3f285864db)
 Meeting number:
-616 881 859
+514 245 679
 
 
 
