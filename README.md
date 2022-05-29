@@ -69,36 +69,29 @@ Location: asndaosind
 
 #### Scenario
 
-As a user interested in plants, I want to be able to enter and save details of a specimen: date planted, photos, and locations, so that I can view a history of this plant.  
+As a user who wants to plan out his day, I want to quickly open up this app and look at my schedule to see what all tasks I have planned for the day.
 
 #### Dependencies
-Plant search data are available and accessible.  
-The device has a camera, and the user has granted access to the camera.  
-The device has GPS capabilities, and the user has granted location access.  
+Task data is available to the user.  
+The devidce has a in-built calender app.  
+
 
 #### Assumptions  
-Scientific names are stated in Latin.  
-Common names are stated in English.  
+_______ 
 
 #### Examples  
 
 1.1  
-**Given** a feed of plant data is available  
-**Given** GPS details are available  
-**When**  
-
--	Select the plant Asimina triloba  
--	Add notes: “planted by Brandan Jones”  
-**Then**  when I navigate to the Specimen History view, I should see at least one Asimina triloba specimen with the notes, “planted by Brandan Jones”  
+**Given** user's calender data is available  
+**When** User opens timeman calender page
+**Then** user can see all his tasks for the day
 
 2.1  
-**Given** a feed of plant data is available  
-**Given** GPS details are available  
-**When**   
+**Given** user's calender data is available  
+**When**  user opens the calender page of the app 
 
--	Select the plant Malus domestica ‘Fuji’  
--	Take a photo of a Fuji apple seedling  
-**Then** when I navigate to the Specimen History view, I should see at least one Malus domestica ‘Fuji’ specimen with the a photo of a Fuji apple seedling.  
+-	Selects create task  
+**Then** User can enter  tasks into the calender, the task option will also include previous tasks for faster input.
 
 ## Class Diagram
 
@@ -123,9 +116,9 @@ Common names are stated in English.
 
 ## Scrum Roles
 
-- DevOps/Product Owner/Scrum Master: Brandan Jones  
-- Frontend Developer: Brandan Jones  
-- Integration Developer: Brandan Jones  
+- DevOps/Product Owner/Scrum Master: Rishabh Sharma 
+- Frontend Developer: Felix Odogwu  
+- Integration Developer: Dhruman Patel  
 
 ## Weekly Meeting
 
