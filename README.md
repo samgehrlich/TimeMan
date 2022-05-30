@@ -102,19 +102,18 @@ The timezone is accurate
 ### Class Diagram Description
 
 
-**MainActivity:**  The first screen the user sees.  This will have a list of specimens, and an option to enter a new specimen.  
+**MainActivity:**  One the user is finshed with making the profile,The first screen the user sees.  This will have a clander with tasks shown with half screen showing list of taks.
 
-**SpecimenDetailsActivity:**  A screen that shows details of a specimen.  
+**ProfileMaker:**  A screen that will allow the user to modify/Create profile.  
 
-**RetrofitInstance:** Boostrap class required for Retrofit.  
+**Task Manager:** A screen that will allow user to create/modify/delete tasks.  
 
-**Plant:** Noun class that represents a plant.  
+**Profile:** Noun class that represents a user/user's profile.  
 
-**Specimen:** Noun class that represents a specimen.  
+**Task:** Noun class that represents a task.  
 
-**IPlantDAO:** Interface for Retrofit to find and parse Plant JSON.  
+**IProfile:** Interface for the profile class.  
 
-**ISpecimenDAO:** Interface for Room to persist Specimen data  
 
 ## Scrum Roles
 
