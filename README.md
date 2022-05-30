@@ -95,7 +95,8 @@ The timezone is accurate
 
 ## Class Diagram
 
-![ClassDiagram]![(https://user-images.githubusercontent.com/57459468/171060825-c226e7f2-0d22-482b-92e5-ad7aef17552d.png)
+
+![Activity diagram](https://user-images.githubusercontent.com/57459468/171060898-9d677441-3f2c-4bbd-8d6c-8807e918f46d.png)
 
 
 ### Class Diagram Description
