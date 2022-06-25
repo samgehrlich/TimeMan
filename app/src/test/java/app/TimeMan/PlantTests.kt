@@ -1,7 +1,7 @@
 package app.TimeMan
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import app.TimeMan.dto.Plant
+import app.TimeMan.dto.Task
 import app.TimeMan.service.PlantService
 import junit.framework.Assert.*
 import kotlinx.coroutines.test.runTest
@@ -15,7 +15,7 @@ class PlantTests {
     var rule: TestRule = InstantTaskExecutorRule()
 
     lateinit var plantService : PlantService
-    var allPlants : List<Plant>? = ArrayList<Plant>()
+    var allPlants : List<Task>? = ArrayList<Task>()
 
     @Test
     fun `Given plant data are available when I search for Redbud then I should receive Cercis canadensis` () = runTest {

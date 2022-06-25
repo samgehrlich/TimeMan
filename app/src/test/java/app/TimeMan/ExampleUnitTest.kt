@@ -1,6 +1,6 @@
 package app.TimeMan
 
-import app.TimeMan.dto.Plant
+import app.TimeMan.dto.Task
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -33,7 +33,7 @@ class ExampleUnitTest {
 
     @Test
     fun confirmEasternRedbud_outputsEasternRedbud() {
-        val plant : Plant = Plant("Cercis", "canadensis", "Eastern Redbud")
+        val plant : Task = Task("Cercis", "canadensis", "Eastern Redbud")
         assertEquals("Eastern Redbud", plant.toString())
     }
 

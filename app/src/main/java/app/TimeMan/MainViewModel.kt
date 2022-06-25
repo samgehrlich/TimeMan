@@ -10,11 +10,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.TimeMan.dto.Photo
-import app.TimeMan.dto.Plant
 import app.TimeMan.dto.Specimen
-import app.TimeMan.dto.User
+import app.TimeMan.dto.Profile
 import app.TimeMan.service.IPlantService
-import app.TimeMan.service.PlantService
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.storage.FirebaseStorage
@@ -27,7 +25,7 @@ class MainViewModel(var plantService : IPlantService) : ViewModel() {
     var plants = plantService.getLocalPlantDAO().getAllPlants()
     var specimens: MutableLiveData<List<Specimen>> = MutableLiveData<List<Specimen>>()
     var selectedSpecimen by mutableStateOf(Specimen())
-    var user : User? = null
+    var user : Profile? = null
     val eventPhotos : MutableLiveData<List<Photo>> = MutableLiveData<List<Photo>>()
 
     private lateinit var firestore : FirebaseFirestore

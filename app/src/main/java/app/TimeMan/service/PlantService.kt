@@ -5,27 +5,27 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.room.Room
 import app.TimeMan.RetrofitClientInstance
-import app.TimeMan.dao.ILocalPlantDAO
-import app.TimeMan.dao.IPlantDAO
-import app.TimeMan.dao.PlantDatabase
-import app.TimeMan.dto.Plant
+import app.TimeMan.dao.IProfileDAO
+import app.TimeMan.dao.ITaskDao
+import app.TimeMan.dao.TaskDataBase
+import app.TimeMan.dto.Task
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 import retrofit2.awaitResponse
 
 interface IPlantService {
-    suspend fun fetchPlants() : List<Plant>?
-    fun getLocalPlantDAO(): ILocalPlantDAO
+    suspend fun fetchPlants() : List<Task>?
+    fun getLocalPlantDAO(): IProfileDAO
 }
 
 class PlantService(val application: Application) : IPlantService {
 
-    lateinit var db: PlantDatabase
+    lateinit var db: TaskDataBase
 
-    override suspend fun fetchPlants() : List<Plant>? {
+    override suspend fun fetchPlants() : List<Task>? {
         return withContext(Dispatchers.IO) {
-            val service = RetrofitClientInstance.retrofitInstance?.create(IPlantDAO::class.java)
+            val service = RetrofitClientInstance.retrofitInstance?.create(ITaskDao::class.java)
             val plants = async {service?.getAllPlants()}
             var result = plants.await()?.awaitResponse()?.body()
             updateLocalPlants(result)
@@ -33,7 +33,7 @@ class PlantService(val application: Application) : IPlantService {
         }
     }
 
-    private suspend fun updateLocalPlants(plants : ArrayList<Plant>?) {
+    private suspend fun updateLocalPlants(plants : ArrayList<Task>?) {
         try {
             plants?.let {
                 val localPlantDAO = getLocalPlantDAO()
@@ -44,9 +44,9 @@ class PlantService(val application: Application) : IPlantService {
         }
     }
 
-    override fun getLocalPlantDAO(): ILocalPlantDAO {
+    override fun getLocalPlantDAO(): IProfileDAO {
         if (!this::db.isInitialized) {
-            db = Room.databaseBuilder(application, PlantDatabase::class.java, "myplants").build()
+            db = Room.databaseBuilder(application, TaskDataBase::class.java, "myplants").build()
         }
         return db.localPlantDAO()
     }

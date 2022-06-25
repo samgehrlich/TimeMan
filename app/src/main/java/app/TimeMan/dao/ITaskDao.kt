@@ -1,12 +1,12 @@
 package app.TimeMan.dao
 
-import app.TimeMan.dto.Plant
+import app.TimeMan.dto.Task
 import retrofit2.Call
 import retrofit2.http.GET
 
-interface IPlantDAO {
+interface ITaskDao {
 
     @GET("/perl/mobile/viewplantsjsonarray.pl")
-    fun getAllPlants() : Call<ArrayList<Plant>>
+    fun getAllPlants() : Call<ArrayList<Task>>
 
 }
