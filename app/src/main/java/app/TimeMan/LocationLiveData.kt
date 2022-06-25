@@ -7,13 +7,13 @@ import android.location.Location
 import android.os.Looper
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.LiveData
-import app.TimeMan.dto.LocationDetails
+import app.TimeMan.dto.ToBeAdded
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 
-class LocationLiveData(var context: Context) : LiveData<LocationDetails>() {
+class LocationLiveData(var context: Context) : LiveData<ToBeAdded>() {
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
 
     override fun onActive() {
@@ -67,7 +67,7 @@ class LocationLiveData(var context: Context) : LiveData<LocationDetails>() {
     private fun setLocationData(location: Location?) {
         location?.let {
             location ->
-            value = LocationDetails(location.longitude.toString(), location.latitude.toString())
+            value = ToBeAdded(location.longitude.toString(), location.latitude.toString())
         }
     }
 
