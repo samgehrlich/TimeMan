@@ -8,7 +8,7 @@ import app.TimeMan.dto.Task
 interface IProfileDAO {
 
     @Query("SELECT * FROM plants")
-    fun getAllPlants() : LiveData<List<Task>>
+    fun getAllTasks() : LiveData<List<Task>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(plants: ArrayList<Task>)

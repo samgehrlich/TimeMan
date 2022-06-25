@@ -22,7 +22,7 @@ class MainViewModel(var plantService : IPlantService) : ViewModel() {
 
     val photos: ArrayList<Photo> by mutableStateOf(ArrayList<Photo>())
     internal val NEW_SPECIMEN = "New Specimen"
-    var plants = plantService.getLocalPlantDAO().getAllPlants()
+    var plants = plantService.getLocalPlantDAO().getAllTasks()
     var specimens: MutableLiveData<List<Specimen>> = MutableLiveData<List<Specimen>>()
     var selectedSpecimen by mutableStateOf(Specimen())
     var user : Profile? = null

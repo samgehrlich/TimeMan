@@ -26,7 +26,7 @@ class PlantService(val application: Application) : IPlantService {
     override suspend fun fetchPlants() : List<Task>? {
         return withContext(Dispatchers.IO) {
             val service = RetrofitClientInstance.retrofitInstance?.create(ITaskDao::class.java)
-            val plants = async {service?.getAllPlants()}
+            val plants = async {service?.getAllTasks()}
             var result = plants.await()?.awaitResponse()?.body()
             updateLocalPlants(result)
             return@withContext result
@@ -48,6 +48,6 @@ class PlantService(val application: Application) : IPlantService {
         if (!this::db.isInitialized) {
             db = Room.databaseBuilder(application, TaskDataBase::class.java, "myplants").build()
         }
-        return db.localPlantDAO()
+        return db.localTaskDAO()
     }
 }

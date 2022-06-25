@@ -7,6 +7,6 @@ import retrofit2.http.GET
 interface ITaskDao {
 
     @GET("/perl/mobile/viewplantsjsonarray.pl")
-    fun getAllPlants() : Call<ArrayList<Task>>
+    fun getAllTasks() : Call<ArrayList<Task>>
 
 }
