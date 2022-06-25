@@ -2,7 +2,7 @@ package app.TimeMan
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import app.TimeMan.dto.Plant
+import app.TimeMan.dto.Task
 import app.TimeMan.service.PlantService
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -11,7 +11,6 @@ import junit.framework.Assert.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.*
 import org.junit.rules.TestRule
@@ -48,11 +47,11 @@ class PlantUnitTests {
     }
 
     private fun givenViewModelIsInitializedWithMockData() {
-        val plants = ArrayList<Plant>()
-        plants.add(Plant("Cercis", "canadensis", "Eastern Redbud"))
-        val redOak = Plant("Quercus", "rubra", "Red Oak")
+        val plants = ArrayList<Task>()
+        plants.add(Task("Cercis", "canadensis", "Eastern Redbud"))
+        val redOak = Task("Quercus", "rubra", "Red Oak")
         plants.add(redOak)
-        plants.add(Plant("Quercus", "alba", "White Oak"))
+        plants.add(Task("Quercus", "alba", "White Oak"))
 
         coEvery { mockPlantService.fetchPlants() } returns plants
 
@@ -64,10 +63,10 @@ class PlantUnitTests {
     }
 
     private fun thenResultsShouldContainCercisCanadensis() {
-        var allPlants : List<Plant>? = ArrayList<Plant>()
+        var allPlants : List<Task>? = ArrayList<Task>()
         val latch = CountDownLatch(1)
-        val observer = object : Observer<List<Plant>> {
-            override fun onChanged(receivedPlants: List<Plant>?) {
+        val observer = object : Observer<List<Task>> {
+            override fun onChanged(receivedPlants: List<Task>?) {
                 allPlants = receivedPlants
                 latch.countDown()
                 mvm.plants.removeObserver(this)

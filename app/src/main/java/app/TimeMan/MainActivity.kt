@@ -63,7 +63,7 @@ class MainActivity() : ComponentActivity() {
     private var uri: Uri? = null
     private lateinit var currentImagePath: String
     private var firebaseUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
-    private var selectedPlant: Plant? = null
+    private var selectedPlant: Task? = null
     private val viewModel: MainViewModel by viewModel<MainViewModel>()
     private var inPlantName: String = ""
     private var strUri by mutableStateOf("")
@@ -74,7 +74,7 @@ class MainActivity() : ComponentActivity() {
         setContent {
             viewModel.fetchPlants()
             firebaseUser?.let {
-                val user = User(it.uid, "")
+                val user = Profile(it.uid, "")
                 viewModel.user = user
                 viewModel.listenToSpecimens()
             }
@@ -145,7 +145,7 @@ class MainActivity() : ComponentActivity() {
                         } else {
                             // we have selected an existing specimen.
                             specimenText = specimen.toString()
-                            selectedPlant = Plant(genus = "", species = "", common = specimen.plantName, id = specimen.plantId)
+                            selectedPlant = Task(genus = "", species = "", common = specimen.plantName, id = specimen.plantId)
                             inPlantName = specimen.plantName
                         }
                         viewModel.selectedSpecimen = specimen
@@ -160,9 +160,9 @@ class MainActivity() : ComponentActivity() {
     }
 
     @Composable
-    fun TextFieldWithDropdownUsage(dataIn: List<Plant>, label : String = "", take :Int = 3, selectedSpecimen : Specimen = Specimen()) {
+    fun TextFieldWithDropdownUsage(dataIn: List<Task>, label : String = "", take :Int = 3, selectedSpecimen : Specimen = Specimen()) {
 
-        val dropDownOptions = remember { mutableStateOf(listOf<Plant>()) }
+        val dropDownOptions = remember { mutableStateOf(listOf<Task>()) }
         val textFieldValue = remember(selectedSpecimen.specimenId) { mutableStateOf(TextFieldValue(selectedSpecimen.plantName)) }
         val dropDownExpanded = remember { mutableStateOf(false) }
 
@@ -197,7 +197,7 @@ class MainActivity() : ComponentActivity() {
         setValue: (TextFieldValue) -> Unit,
         onDismissRequest: () -> Unit,
         dropDownExpanded: Boolean,
-        list: List<Plant>,
+        list: List<Task>,
         label: String = ""
     ) {
         Box(modifier) {
@@ -242,10 +242,10 @@ class MainActivity() : ComponentActivity() {
     @Composable
     fun SpecimenFacts(
         name: String,
-        plants: List<Plant> = ArrayList<Plant>(),
+        plants: List<Task> = ArrayList<Task>(),
         specimens: List<Specimen> = ArrayList<Specimen>(),
         selectedSpecimen: Specimen = Specimen(),
-        currentLocation: LocationDetails?
+        currentLocation: ToBeAdded?
     ) {
         var inLocation by remember(selectedSpecimen.specimenId) { mutableStateOf(selectedSpecimen.location) }
         var inDescription by remember(selectedSpecimen.specimenId) { mutableStateOf(selectedSpecimen.description) }
@@ -419,7 +419,7 @@ class MainActivity() : ComponentActivity() {
     }
 
     private @Composable
-    fun GPS(location: LocationDetails?) {
+    fun GPS(location: ToBeAdded?) {
         location?.let {
             Text(text = location.latitude)
             Text(text = location.longitude)
@@ -539,7 +539,7 @@ class MainActivity() : ComponentActivity() {
         if (result.resultCode == RESULT_OK) {
             firebaseUser = FirebaseAuth.getInstance().currentUser
             firebaseUser?.let {
-                val user = User(it.uid, it.displayName)
+                val user = Profile(it.uid, it.displayName)
                 viewModel.user = user
                 viewModel.saveUser()
                 viewModel.listenToSpecimens()

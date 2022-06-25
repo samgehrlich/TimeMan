@@ -2,18 +2,18 @@ package app.TimeMan.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import app.TimeMan.dto.Plant
+import app.TimeMan.dto.Task
 
 @Dao
-interface ILocalPlantDAO {
+interface IProfileDAO {
 
     @Query("SELECT * FROM plants")
-    fun getAllPlants() : LiveData<List<Plant>>
+    fun getAllPlants() : LiveData<List<Task>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(plants: ArrayList<Plant>)
+    fun insertAll(plants: ArrayList<Task>)
 
     @Delete
-    fun delete(plant : Plant)
+    fun delete(plant : Task)
 
 }
