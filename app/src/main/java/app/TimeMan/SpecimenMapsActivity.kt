@@ -14,9 +14,6 @@ import com.google.maps.android.compose.Marker
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.google.maps.android.compose.rememberCameraPositionState
 import androidx.compose.runtime.getValue
-import app.TimeMan.dto.User
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 
 
 class SpecimenMapsActivity : ComponentActivity() {
