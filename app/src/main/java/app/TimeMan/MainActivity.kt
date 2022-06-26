@@ -1,6 +1,7 @@
 package app.TimeMan
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager.PERMISSION_GRANTED
@@ -72,6 +73,11 @@ class MainActivity() : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+
+            val plants by viewModel.plants.observeAsState(initial = emptyList())
+            val specimens by viewModel.specimens.observeAsState(initial = emptyList())
+            val location by applicationViewModel.getLocationLiveData().observeAsState()
+
             viewModel.fetchPlants()
             firebaseUser?.let {
                 val user = Profile(it.uid, "")
@@ -79,16 +85,14 @@ class MainActivity() : ComponentActivity() {
                 viewModel.listenToSpecimens()
             }
 
-            val plants by viewModel.plants.observeAsState(initial = emptyList())
-            val specimens by viewModel.specimens.observeAsState(initial = emptyList())
-            val location by applicationViewModel.getLocationLiveData().observeAsState()
+
             MyPlantDiaryTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     color = MaterialTheme.colors.background,
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    SpecimenFacts("Android", plants, specimens, viewModel.selectedSpecimen, location)
+                    SpecimenFacts(plants, specimens, viewModel.selectedSpecimen, location)
                 }
             }
             prepLocationUpdates()
@@ -241,7 +245,6 @@ class MainActivity() : ComponentActivity() {
 
     @Composable
     fun SpecimenFacts(
-        name: String,
         plants: List<Task> = ArrayList<Task>(),
         specimens: List<Specimen> = ArrayList<Specimen>(),
         selectedSpecimen: Specimen = Specimen(),
@@ -284,9 +287,7 @@ class MainActivity() : ComponentActivity() {
                     onClick = {
                         selectedSpecimen.apply {
                             plantName = inPlantName
-                            plantId = selectedPlant?.let {
-                                it.id
-                            } ?: 0
+                            plantId = selectedPlant?.id ?: 0
                             location = inLocation
                             description = inDescription
                             datePlanted = inDatePlanted
@@ -418,8 +419,8 @@ class MainActivity() : ComponentActivity() {
         viewModel.updatePhotoDatabase(photo)
     }
 
-    private @Composable
-    fun GPS(location: ToBeAdded?) {
+    @Composable
+    private fun GPS(location: ToBeAdded?) {
         location?.let {
             Text(text = location.latitude)
             Text(text = location.longitude)
@@ -464,11 +465,12 @@ class MainActivity() : ComponentActivity() {
             uri = FileProvider.getUriForFile(this, "app.plantdiary.fileprovider", file)
         } catch (e: Exception) {
             Log.e(TAG, "Error: ${e.message}")
-            var foo = e.message
+            e.message
         }
         getCameraImage.launch(uri)
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun createImageFile() : File {
         val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
         val imageDirectory = getExternalFilesDir(Environment.DIRECTORY_PICTURES)

@@ -157,7 +157,7 @@ class MainViewModel(var plantService : IPlantService) : ViewModel() {
                         querySnapshot ->
                     var documents = querySnapshot.documents
                     var inPhotos = ArrayList<Photo>()
-                    documents?.forEach {
+                    documents.forEach {
                         var photo = it.toObject(Photo::class.java)
                         photo?.let {
                             inPhotos.add(it)
