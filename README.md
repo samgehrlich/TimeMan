@@ -4,7 +4,7 @@
 Design Document  
 
 ## Introduction 
-
+ 
 Do you want an app to help you plan your time? TimeMan can help you with it's various new time saving and planning features
 
 -	Personalized profile for users.
