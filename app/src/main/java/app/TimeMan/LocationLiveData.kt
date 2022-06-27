@@ -95,5 +95,5 @@ class LocationLiveData(var context: Context) : LiveData<ToBeAdded>() {
 
         }
     }
-    
+
 }
