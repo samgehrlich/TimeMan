@@ -1,5 +1,6 @@
 package app.TimeMan
 
+import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.net.Uri
 import android.util.Log
@@ -18,21 +19,21 @@ import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.launch
 
+@SuppressLint("MutableCollectionMutableState")
 class MainViewModel(var plantService : IPlantService) : ViewModel() {
 
     val photos: ArrayList<Photo> by mutableStateOf(ArrayList<Photo>())
-    internal val NEW_SPECIMEN = "New Specimen"
+    private val newSPECIMEN = "New Specimen"
     var plants = plantService.getLocalPlantDAO().getAllPlants()
     var specimens: MutableLiveData<List<Specimen>> = MutableLiveData<List<Specimen>>()
     var selectedSpecimen by mutableStateOf(Specimen())
     var user : Profile? = null
     val eventPhotos : MutableLiveData<List<Photo>> = MutableLiveData<List<Photo>>()
 
-    private lateinit var firestore : FirebaseFirestore
-    private var storageReference = FirebaseStorage.getInstance().getReference()
+    private var firestore : FirebaseFirestore = FirebaseFirestore.getInstance()
+    private var storageReference = FirebaseStorage.getInstance().reference
 
     init {
-        firestore = FirebaseFirestore.getInstance()
         firestore.firestoreSettings = FirebaseFirestoreSettings.Builder().build()
     }
 
@@ -49,7 +50,7 @@ class MainViewModel(var plantService : IPlantService) : ViewModel() {
                 // if we reached this point , there was not an error
                 snapshot?.let {
                     val allSpecimens = ArrayList<Specimen>()
-                    allSpecimens.add(Specimen(plantName = NEW_SPECIMEN))
+                    allSpecimens.add(Specimen(plantName = newSPECIMEN))
                     val documents = snapshot.documents
                     documents.forEach {
                         val specimen = it.toObject(Specimen::class.java)
@@ -76,7 +77,7 @@ class MainViewModel(var plantService : IPlantService) : ViewModel() {
         user?.let {
             user ->
             val document =
-                if (selectedSpecimen.specimenId == null || selectedSpecimen.specimenId.isEmpty()) {
+                if (selectedSpecimen.specimenId.isEmpty()) {
                     // create a new specimen
                     firestore.collection("users").document(user.uid).collection("specimens").document()
                 } else {
@@ -120,14 +121,14 @@ class MainViewModel(var plantService : IPlantService) : ViewModel() {
     internal fun updatePhotoDatabase(photo: Photo) {
         user?.let {
             user ->
-            var photoDocument = if (photo.id.isEmpty()) {
+            val photoDocument = if (photo.id.isEmpty()) {
                 firestore.collection("users").document(user.uid).collection("specimens").document(selectedSpecimen.specimenId).collection("photos").document()
             } else {
                 firestore.collection("users").document(user.uid).collection("specimens").document(selectedSpecimen.specimenId).collection("photos").document(photo.id)
 
             }
             photo.id = photoDocument.id
-            var handle = photoDocument.set(photo)
+            val handle = photoDocument.set(photo)
             handle.addOnSuccessListener {
                 Log.i(TAG, "Successfully updated photo metadata")
             }
@@ -150,15 +151,15 @@ class MainViewModel(var plantService : IPlantService) : ViewModel() {
     fun fetchPhotos() {
         user?.let {
                 user ->
-            var photoCollection = firestore.collection("users").document(user.uid).collection("specimens").document(selectedSpecimen.specimenId).collection("photos")
+            val photoCollection = firestore.collection("users").document(user.uid).collection("specimens").document(selectedSpecimen.specimenId).collection("photos")
             var photosListener = photoCollection.addSnapshotListener {
                     querySnapshot, firebaseFirestoreException ->
                 querySnapshot?.let {
                         querySnapshot ->
-                    var documents = querySnapshot.documents
-                    var inPhotos = ArrayList<Photo>()
+                    val documents = querySnapshot.documents
+                    val inPhotos = ArrayList<Photo>()
                     documents.forEach {
-                        var photo = it.toObject(Photo::class.java)
+                        val photo = it.toObject(Photo::class.java)
                         photo?.let {
                             inPhotos.add(it)
                         }
@@ -172,7 +173,7 @@ class MainViewModel(var plantService : IPlantService) : ViewModel() {
     fun delete(photo: Photo) {
         user?.let {
             user ->
-            var photoCollection = firestore.collection("users").document(user.uid).collection("specimens").document(selectedSpecimen.specimenId).collection("photos")
+            val photoCollection = firestore.collection("users").document(user.uid).collection("specimens").document(selectedSpecimen.specimenId).collection("photos")
             photoCollection.document(photo.id).delete()
             val uri = Uri.parse(photo.localUri)
             val imageRef = storageReference.child("images/${user.uid}/${uri.lastPathSegment}")
