@@ -14,7 +14,6 @@ interface IProfileDAO {
     fun insertAll(plants: ArrayList<Task>)
 
     @Delete
-
     fun delete(plant : Task)
 
 }
