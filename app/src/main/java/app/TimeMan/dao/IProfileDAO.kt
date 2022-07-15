@@ -7,6 +7,7 @@ import app.TimeMan.dto.Task
 @Dao
 interface IProfileDAO {
 
+
     @Query("SELECT * FROM plants")
     fun getAllPlants() : LiveData<List<Task>>
 
@@ -15,5 +16,6 @@ interface IProfileDAO {
 
     @Delete
     fun delete(plant : Task)
+
 
 }
